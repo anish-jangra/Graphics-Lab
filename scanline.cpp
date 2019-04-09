@@ -16,10 +16,11 @@ struct point
 
 struct node
 {
-    int x,ymax;
+    int ymax;
+    float x;
     float m_;
     node(){}
-    node (int x_,int ymax_,float m__){x=x_;ymax=ymax_;m_=m__;}
+    node (float x_,int ymax_,float m__){x=x_;ymax=ymax_;m_=m__;}
     bool operator < (node other)
     {
         return x<other.x;
@@ -59,7 +60,7 @@ int main()
             if (y<element.ymax)
             {
                 node z=element;
-                z.x+=round(element.m_);
+                z.x+=element.m_;
                 temp.push_back(z);
             }
         }
@@ -70,12 +71,13 @@ int main()
         {
             if (parity)
             {
-                line(AET[i].x,y,AET[i+1].x,y);
+                line(round(AET[i].x),y,AET[i+1].x,y);
             }
             parity^=1;
         }
         y++;
     }
+
     getch();
     closegraph();
 
@@ -85,11 +87,12 @@ int main()
 }
 
 /*
-4
-20 20
-10 30
-20 40
-30 30
+5
+200 200
+100 300
+300 400
+600 100
+300 300
 */
 /*
 4
